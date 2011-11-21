@@ -14,13 +14,13 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent SettingsIntent = new Intent(Settings.this,MainMenu.class);
-                startActivity(SettingsIntent);
-            }
-        });
+//        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
+//        MainMenu.setOnClickListener(new OnClickListener() {
+//            public void onClick(View v) {
+//                Intent SettingsIntent = new Intent(Settings.this,MainMenu.class);
+//                startActivity(SettingsIntent);
+//            }
+//        });
     }
 
 }

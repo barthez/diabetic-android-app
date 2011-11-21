@@ -14,13 +14,13 @@ public class ShowSugar  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.showsugar);
         
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent ShowSugarIntent = new Intent(ShowSugar.this,MainMenu.class);
-                startActivity(ShowSugarIntent);
-            }
-        });
+//        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
+//        MainMenu.setOnClickListener(new OnClickListener() {
+//            public void onClick(View v) {
+//                Intent ShowSugarIntent = new Intent(ShowSugar.this,MainMenu.class);
+//                startActivity(ShowSugarIntent);
+//            }
+//        });
     }
 
 }

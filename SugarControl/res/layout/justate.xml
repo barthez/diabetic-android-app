@@ -3,11 +3,14 @@
         android:id="@+id/frameLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
-        android:gravity="bottom">
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kopia 'co będzie gdy zjem'"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 	        
-	        <Button
-	            android:id="@+id/backtomainmenu"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="Wróć z JustAte" />
     </TableLayout>

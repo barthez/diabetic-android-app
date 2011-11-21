@@ -3,11 +3,66 @@
         android:id="@+id/frameLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
-        android:gravity="bottom">
+        android:gravity="center">
 	        
 	        <Button
-	            android:id="@+id/backtomainmenu"
+	            android:id="@+id/selectproduct"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:text="Wróć z CanEat" />
+	            android:text="Wybierz produkt"
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	        <TextView
+            android:id="@+id/pause1"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+	        <Button
+	            android:id="@+id/selectdish"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Wybierz danie"
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	        <TextView
+            android:id="@+id/pause2"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+             />
+	        <Button
+	            android:id="@+id/addproduct"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Dodaj produkt"
+	            android:textAppearance="?android:attr/textAppearanceMedium" />
+	        <TextView
+            android:id="@+id/pause3"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+	        <Button
+	            android:id="@+id/adddish"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Dodaj danie"
+	            android:textAppearance="?android:attr/textAppearanceMedium" />
+	        <TextView
+            android:id="@+id/pause4"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+	       <Button
+	            android:id="@+id/showgraph"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Wyświetl graf" 
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	        
     </TableLayout>

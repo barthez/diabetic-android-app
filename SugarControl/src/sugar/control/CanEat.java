@@ -14,13 +14,13 @@ public class CanEat extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.caneat);
         
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent CanEatIntent = new Intent(CanEat.this,MainMenu.class);
-                startActivity(CanEatIntent);
-            }
-        });
+//        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
+//        MainMenu.setOnClickListener(new OnClickListener() {
+//            public void onClick(View v) {
+//                Intent CanEatIntent = new Intent(CanEat.this,MainMenu.class);
+//                startActivity(CanEatIntent);
+//            }
+//        });
     }
 
 }
