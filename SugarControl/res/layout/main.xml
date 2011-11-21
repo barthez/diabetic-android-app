@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mainmenu"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/showsugar"
+            android:layout_width="200px"
+            android:layout_height="70px"
+            android:text="Pokaż szacowany poziom cukru" />
+
+        <TextView
+            android:id="@+id/pause1"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/insertsugar"
+            android:layout_width="200px"
+            android:layout_height="70px"
+            android:text="Wprowadź aktualny poziom cukru" />
+
+        <TextView
+            android:id="@+id/pause2"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/caneat"
+            android:layout_width="200px"
+            android:layout_height="70px"
+            android:text="Co będzie gdy zjem..?" />
+        
+        <TextView
+            android:id="@+id/pause3"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/justate"
+            android:layout_width="200px"
+            android:layout_height="70px"
+            android:text="Właśnie zjadłam/em.." />
+        
+        <TextView
+            android:id="@+id/pause4"
+            android:layout_width="fill_parent"
+            android:layout_height="40px"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="200px"
+            android:layout_height="70px"
+            android:text="Zmień ustawienia" />
+
+    </TableLayout>
