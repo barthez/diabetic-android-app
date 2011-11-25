@@ -17,14 +17,14 @@ public class InsertSugar extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.insertsugar);
 
-    Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-    MainMenu.setOnClickListener(new OnClickListener() {
-
-      public void onClick(View v) {
-        Intent InsertSugarIntent = new Intent(InsertSugar.this, MainMenu.class);
-        startActivity(InsertSugarIntent);
-      }
-    });
+//    Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
+//    MainMenu.setOnClickListener(new OnClickListener() {
+//
+//      public void onClick(View v) {
+//        Intent InsertSugarIntent = new Intent(InsertSugar.this, MainMenu.class);
+//        startActivity(InsertSugarIntent);
+//      }
+//    });
     
     
     Button estimation = (Button) findViewById(R.id.estimation);
