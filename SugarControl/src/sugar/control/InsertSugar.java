@@ -35,7 +35,7 @@ public class InsertSugar extends Activity {
         try {
           double [] bloodG= {80, 90, 105, 90, 80, 80, 80, 80};
 
-          BloodGlucoseEstimator bge = new BloodGlucoseEstimator();
+          BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
 
           bge.setGTTCurve(bloodG, 50);
           

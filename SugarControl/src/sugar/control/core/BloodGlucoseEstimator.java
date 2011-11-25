@@ -14,11 +14,28 @@ public class BloodGlucoseEstimator {
   private double coeff; // Stosunek ilości glukozy przy pomiarze do 50g
   private Spline GTTCurve = null;
   private double lastValues[];
-  private int mH, mM;
-  private Time tt = new Time();
+  private Time estimationStart = new Time();
 
-  public BloodGlucoseEstimator() {
+  protected BloodGlucoseEstimator(){
+    loadData();
   }
+  
+  private void loadData() {
+    
+  }
+  
+  public void saveData() {
+    
+  }
+  
+  static BloodGlucoseEstimator instance = null;
+  public static BloodGlucoseEstimator getInstance() {
+    if (instance == null) {
+      instance = new BloodGlucoseEstimator();
+    }
+    return instance;
+  }
+  
 
   public void setGTTCurve(double[] data, double sW) {
     if (data.length != 8) {
@@ -27,47 +44,42 @@ public class BloodGlucoseEstimator {
     GTTCurve = new Spline(time, data);
     coeff = sW/50;
   }
+  
+  public void setGlucoseValue(double value) {
+    if (lastValues == null) {
+      lastValues = new double[1];
+      lastValues[0] = value;
+    } else {
+      double c = value/getlastValue(0);
+      for(int i=0; i< lastValues.length; ++i) {
+        lastValues[i] = c*lastValues[i];
+      }
+    }
+  }
 
   public double[] estimate(double ig, int howlong) {
-    if( howlong > 360) {
-      throw new IllegalArgumentException("Nie można estymować poziomu cukru dłużej niż 360 minut");
-    }
     if (GTTCurve == null) {
       throw new RuntimeException("Wczytaj najpierw dane krzywej glikemicznej.");
     }
-    tt.setToNow();
-    int _mH = tt.hour;
-    int _mM = tt.minute;
-    
-    
+    if( howlong > GTTCurve.lastValue()) {
+      throw new IllegalArgumentException("Nie można estymować poziomu cukru dłużej niż zakres krzywej glikemicznej.");
+    }
+    Time tt = new Time();
+    tt.setToNow();    
     double[] output = new double[howlong];
     double first = GTTCurve.val(0);
     double c = coeff*ig/100;    
     for(int i = 0; i < howlong; ++i) {
-      output[i] = getlastValue(i,_mH, _mM) + (GTTCurve.val(i) - first)*c;
+      output[i] = getlastValue(i, tt) + (GTTCurve.val(i) - first)*c;
     }
 
     return output;
   }
   
   public void saveEstimatimation(double ig, int howlong) {
-    if( howlong > 360) {
-      throw new IllegalArgumentException("Nie można estymować poziomu cukru dłużej niż 360 minut");
-    }
-    if (GTTCurve == null) {
-      throw new RuntimeException("Wczytaj najpierw dane krzywej glikemicznej.");
-    }
-    tt.setToNow();
-    int _mH = tt.hour;
-    int _mM = tt.minute;
+    double output[] = estimate(ig, howlong);    
     
-    
-    double[] output = new double[howlong];
-    double first = GTTCurve.val(0);
-    double c = coeff*ig/100;    
-    for(int i = 0; i < howlong; ++i) {
-      output[i] = getlastValue(i,_mH, _mM) + (GTTCurve.val(i) - first)*c;
-    }
+    estimationStart.setToNow();
     
     lastValues = new double[howlong];
     for(int i = 0; i < howlong; ++i) {
@@ -76,14 +88,14 @@ public class BloodGlucoseEstimator {
   }
 
   private double getlastValue(int i) {
+    
+    Time tt = new Time();
     tt.setToNow();
-    int _H = tt.hour;
-    int _M = tt.minute;
-    return getlastValue(i, _H, _M);
+    return getlastValue(i, tt);
   }
   
-  private double getlastValue(int i, int _H, int _M) {
-    i = i + (_H - mH)*60 + mM - _M;
+  private double getlastValue(int i, Time t) {
+    i = i + (t.hour - estimationStart.hour)*60 + t.minute - estimationStart.minute;
     if (i >= lastValues.length) {
       return lastValues[lastValues.length -1];
     } else {
