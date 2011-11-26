@@ -6,11 +6,23 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/sugarLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aktualny poziom cukru"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/Pause1"
+            android:layout_width="wrap_content"
+            android:layout_height="200px"
+            android:text="" />
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Odśwież" />
 	      
     </TableLayout>
