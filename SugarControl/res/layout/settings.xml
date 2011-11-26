@@ -1,13 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/frameLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frameLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- android:gravity="top" -->
+  >
+
+  
+    <Button
+        android:id="@+id/backtomainmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Wróć z Settings" />
+
+   <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+         android:layout_marginTop="14dp"
+        android:text="Wpisz swoje imię" />
+
+    <EditText
+        android:id="@+id/name"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:gravity="bottom">
-	        
-	        <Button
-	            android:id="@+id/backtomainmenu"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="Wróć z Settings" />
-    </TableLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+  		android:layout_marginBottom="14dp"
+        android:layout_below="@+id/label"
+         />
+
+    <TextView
+        android:id="@+id/label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/name"
+      
+        android:text="Podaj poziom cukru po 60 min." />
+    
+    <EditText
+        android:id="@+id/h"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label2"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="14dp"
+      
+        android:digits="1234567890"
+        android:maxLength="4" >
+
+    
+     </EditText>
+    
+    <TextView
+        android:id="@+id/label3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/h"
+        android:text="Podaj poziom cukru po 120 min." />
+        
+      <EditText
+        android:id="@+id/hh"
+        android:layout_marginBottom="14dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+		android:layout_below="@+id/label3"
+	
+        android:digits="1234567890"
+        android:maxLength="4" />
+        
+        
+        
+ <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hh"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"
+        android:text="OK" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/ok"
+        android:layout_alignTop="@+id/ok"
+        android:text="Cancel" />
+
+  
+
+ 
+
+</RelativeLayout>

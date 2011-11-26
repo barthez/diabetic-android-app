@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/graph"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent"
+			android:layout_height="350dip"
+			android:id="@+id/graph1" />
+            <RelativeLayout
+                android:id="@+id/RLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+               <TextView
+                    android:id="@+id/pause1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="10px"
+                    android:gravity="center"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <Button
+                    android:id="@+id/yeseat"
+                    android:layout_width="150px"
+                    android:layout_height="50px"
+                    android:text="Jem"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:background="#009933"
+                    android:layout_below="@+id/pause1"
+                    android:layout_alignLeft="@+id/pause1" />
+                <Button
+                    android:id="@+id/noeat"
+                    android:layout_width="150px"
+                    android:layout_height="50px"
+                    android:text="Nie jem"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:background="#CC0000"
+                    android:layout_below="@+id/pause1"
+                    android:layout_alignRight="@+id/pause1" />
+            </RelativeLayout>
+	</LinearLayout>
+
+   
+
+        
+
+</ScrollView>

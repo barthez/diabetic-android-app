@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Contacts.People;
 import android.widget.SimpleCursorAdapter;
-import suger.control.database.DatabaseAdapter;
+import sugar.control.database.DatabaseAdapter;
 
 /**
  *

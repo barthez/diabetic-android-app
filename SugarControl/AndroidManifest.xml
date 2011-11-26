@@ -24,6 +24,9 @@
         <activity android:name=".FoodListActivity"></activity>
         <activity android:name=".JustAte"></activity>
         <activity android:name=".Settings"></activity>
+        <activity android:name=".SugarLevelGraph"></activity>
+ 	<activity android:name=".ShowSet"/> 
+            <activity android:name=".ShowInsert"/>
     </application>
 
 </manifest>

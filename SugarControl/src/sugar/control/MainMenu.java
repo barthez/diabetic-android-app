@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import suger.control.database.DatabaseAdapter;
-import suger.control.database.Food;
+import sugar.control.database.DatabaseAdapter;
+import sugar.control.database.Food;
 
 public class MainMenu extends Activity {
     /** Called when the activity is first created. */

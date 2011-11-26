@@ -13,14 +13,23 @@ public class CanEat extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.caneat);
-        
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
+
+        /*Button DrawGraph = (Button) findViewById(R.id.drawgraph);
+        DrawGraph.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                Intent CanEatIntent = new Intent(CanEat.this,MainMenu.class);
+                startGraphActivity(SugarLevelGraph.class);
+            }
+        });*/
+
+         Button DrawGraph = (Button) findViewById(R.id.drawgraph);
+        DrawGraph.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent CanEatIntent = new Intent(CanEat.this,SugarLevelGraph.class);
                 startActivity(CanEatIntent);
             }
         });
+
+
     }
 
 }

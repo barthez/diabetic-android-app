@@ -1,3 +1,6 @@
-/SugarControl/gen/
-/SugarControl/bin/
-/SugarControl/nbandroid/
+*.properties
+**/bin
+build.xml
+/SugarControl/gen/*
+/SugarControl/bin/*
+/SugarControl/nbandroid/*

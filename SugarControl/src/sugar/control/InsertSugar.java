@@ -6,54 +6,72 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
-import sugar.control.core.BloodGlucoseEstimator;
+import android.widget.EditText;
+//import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-public class InsertSugar extends Activity {
+public class InsertSugar  extends Activity {
 
-  /** Called when the activity is first created. */
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.insertsugar);
+	
+public OnClickListener listenerOK = new OnClickListener(){
+		
+		public void onClick(View v) {
+			
+					RadioGroup phys = (RadioGroup)findViewById(R.id.physicalactivity);
+					String physAnswer="nie wysz³o";
+					switch(phys.getCheckedRadioButtonId())
+					{case R.id.low: 
+						physAnswer="niska"; 
+						break;
+					case R.id.normal: 
+						physAnswer="normalna";
+						break;
+					case R.id.high: 
+						physAnswer="wysoka";
+						break;
+					default:break;
+					}
+					EditText a = (EditText)findViewById(R.id.sugar);	
+			        double sugarLev = Double.parseDouble(a.getText().toString());
+		           
+			     
+	                
+		            Intent InsertToShowIntent = new Intent(InsertSugar.this,ShowInsert.class);
+	                startActivity(InsertToShowIntent);
+	                
+                    Intent InToShow = new Intent(InsertSugar.this, ShowInsert.class);
+	          
+	                InToShow.putExtra("ph","\nAktywnoœæ fizyczna: "+physAnswer);
+	                InToShow.putExtra("sug",sugarLev);
+	                
+	                startActivityForResult(InToShow, 1);    
+	                
+					
+			
+		}
+	};
+	
 
-    Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-    MainMenu.setOnClickListener(new OnClickListener() {
-
-      public void onClick(View v) {
-        Intent InsertSugarIntent = new Intent(InsertSugar.this, MainMenu.class);
-        startActivity(InsertSugarIntent);
-      }
-    });
-    
-    
-    Button estimation = (Button) findViewById(R.id.estimation);
-    estimation.setOnClickListener(new OnClickListener() {
-
-      public void onClick(View v) {
-        TextView test = (TextView) findViewById(R.id.insertView);
-        try {
-          double [] bloodG= {80, 90, 105, 90, 80, 80, 80, 80};
-
-          BloodGlucoseEstimator bge = new BloodGlucoseEstimator();
-
-          bge.setGTTCurve(bloodG, 50);
-          
-          double [] wynik = bge.estimate(100, 30);
-          test.setText(" ");
-          
-          for (int i = 0; i< wynik.length; i++) {
-            test.append(String.valueOf(wynik[i]) + ", ");
-          }
-          
-          test.append("OK!");
-        } catch ( Exception ex ) {
-          
-          test.setText( (CharSequence) ex.toString() + ": " + ex.getMessage() );
-        }
+	
+	
+	
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.insertsugar);
         
+        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
+        MainMenu.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent InsertSugarIntent = new Intent(InsertSugar.this,MainMenu.class);
+                startActivity(InsertSugarIntent);
+            }
+        });
         
-      }
-    });
-  }
+       Button OK = (Button)findViewById(R.id.ok) ;
+       OK.setOnClickListener(listenerOK);
+        
+    }
+
 }
