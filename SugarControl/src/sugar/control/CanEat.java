@@ -32,19 +32,4 @@ public class CanEat extends Activity {
 
     }
 
-    private void startGraphActivity(Class<? extends Activity> activity) {
-		Intent intent = new Intent(CanEat.this, activity);
-		/*if (((RadioButton) findViewById(R.id.radio_bar)).isChecked()) {
-			if (activity == AdvancedMultipleSeriesGraph.class) {
-				Toast.makeText(this, "Bar Charts are not implemented for multiple series, yet.", Toast.LENGTH_LONG).show();
-				return;
-			}
-			intent.putExtra("type", "bar");
-		} else {
-			intent.putExtra("type", "line");
-		}*/
-                intent.putExtra("type", "line");
-		startActivity(intent);
-    }
-
 }

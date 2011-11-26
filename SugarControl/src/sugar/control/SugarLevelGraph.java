@@ -25,7 +25,7 @@ public class SugarLevelGraph extends Activity {
 
     double[] bloodG = {80, 90, 105, 90, 80, 80, 80, 80};
 
-    BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
+    final BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
 
     bge.setGTTCurve(bloodG, 50);
     bge.setGlucoseValue(80);
@@ -53,5 +53,28 @@ public class SugarLevelGraph extends Activity {
     LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
     layout.addView(graphView);
 
+
+    Button YesEat = (Button) findViewById(R.id.yeseat);
+        YesEat.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                startYesEatActivity(MainMenu.class,bge);
+            }
+        });
+
+    Button NoEat = (Button) findViewById(R.id.noeat);
+        NoEat.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent GraphIntent = new Intent(SugarLevelGraph.this,CanEat.class);
+                startActivity(GraphIntent);
+            }
+        });
+
   }
+
+  private void startYesEatActivity(Class<? extends Activity> activity, BloodGlucoseEstimator bge) {
+		Intent intent = new Intent(SugarLevelGraph.this, activity);
+		bge.saveEstimatimation(100, 360);
+                
+		startActivity(intent);
+	}
 }
