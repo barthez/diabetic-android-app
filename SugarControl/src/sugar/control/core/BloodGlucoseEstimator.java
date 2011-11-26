@@ -11,8 +11,8 @@ public class BloodGlucoseEstimator {
 
   private static final double time[] = {0, 30, 60, 120, 180, 240, 300, 360};
   
-  private double coeff; // Stosunek ilości glukozy przy pomiarze do 50g
-  private double activCoff; // Wspólczynnik aktuwności
+  private double coeff = 1; // Stosunek ilości glukozy przy pomiarze do 50g
+  private double activCoff = 1; // Wspólczynnik aktuwności
   private Spline GTTCurve = null;
   private double lastValues[];
   private Time estimationStart = new Time();
@@ -75,7 +75,8 @@ public class BloodGlucoseEstimator {
     double first = GTTCurve.val(0);
     double c = activCoff*coeff*ig/100;    
     for(int i = 0; i < howlong; ++i) {
-      output[i] = getlastValue(i, tt) + (GTTCurve.val(i) - first)*c;
+      double cv =GTTCurve.val(i);
+      output[i] = getlastValue(i, tt) + (cv - first)*c;
     }
 
     return output;

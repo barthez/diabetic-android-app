@@ -9,7 +9,8 @@
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" >
+            android:layout_gravity="center"
+            android:numeric="integer|decimal" >
 
             <requestFocus />
         </EditText>
@@ -21,18 +22,18 @@
         </TableRow>
 
 
-		  <TextView
-		            android:id="@+id/insertView"
-		            android:layout_width="fill_parent"
-		            android:layout_height="500px"
-		            android:gravity="top"
-		            android:text="@string/hello" />
-		                 
-		  <Button
-		      android:id="@+id/estimation"
-		      android:layout_width="200px"
-		      android:layout_height="70px"
-		      android:text="Estymuj" />
+  <TextView
+            android:id="@+id/insertView"
+            android:layout_width="fill_parent"
+            android:layout_height="300px"
+            android:gravity="top"
+            android:text="@string/hello" />
+                 
+  <Button
+      android:id="@+id/estimation"
+      android:layout_width="200px"
+      android:layout_height="70px"
+      android:text="Estymuj" />
 
 </TableLayout>
 
