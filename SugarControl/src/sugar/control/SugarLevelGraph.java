@@ -28,9 +28,9 @@ public class SugarLevelGraph extends Activity {
     BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
 
     bge.setGTTCurve(bloodG, 50);
-    bge.setGlucoseValue(80.5);
+    bge.setGlucoseValue(80);
 
-    double output[] = bge.estimate(100, 240);
+    double output[] = bge.estimate(100, 360);
 
     GraphViewData data[] = new GraphViewData[output.length];
     for (int i = 0; i < output.length; ++i) {
@@ -45,10 +45,10 @@ public class SugarLevelGraph extends Activity {
 
     //((LineGraphView) graphView).setDrawBackground(true);
 
-    graphView.setHorizontalLabels(new String[]{"0h", "1h", "2h", "3h", "4h"});
+    graphView.setHorizontalLabels(new String[]{"0h", "1h", "2h", "3h", "4h", "5h", "6h"});
     graphView.addSeries(exampleSeries); // data
 
-    graphView.setViewPort(0, 240);
+    graphView.setViewPort(0, 360);
 
     LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
     layout.addView(graphView);

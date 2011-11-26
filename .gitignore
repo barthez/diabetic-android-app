@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 *.properties
 **/bin
 build.xml
-=======
-/SugarControl/gen/
-/SugarControl/bin/
-/SugarControl/nbandroid/
->>>>>>> origin/master
+/SugarControl/gen/*
+/SugarControl/bin/*
+/SugarControl/nbandroid/*
