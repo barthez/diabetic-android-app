@@ -23,6 +23,7 @@
         <activity android:name=".CanEat"></activity>
         <activity android:name=".JustAte"></activity>
         <activity android:name=".Settings"></activity>
+        <activity android:name=".SugarLevelGraph"></activity>
     </application>
 
 </manifest>
