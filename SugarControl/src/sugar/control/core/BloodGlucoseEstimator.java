@@ -2,6 +2,7 @@ package sugar.control.core;
 
 import android.text.format.Time;
 import sugar.control.utils.Spline;
+import sugar.control.utils.TimeDiff;
 
 /**
  * !ATTENTIONE! API może ulegać zmianie
@@ -18,7 +19,7 @@ public class BloodGlucoseEstimator {
   private Time estimationStart = new Time();
   
   /**
-   * Ustaw współczynnik wysiłku fizycznego
+   * Ustawia współczynnik wysiłku fizycznego
    * @param activCoff Współczynnik wysiłku, im większy tym szybciej rośnie/spada cukier
    */
   public void setActivCoff(double activCoff) {
@@ -40,7 +41,7 @@ public class BloodGlucoseEstimator {
   static BloodGlucoseEstimator instance = null;
   
   /**
-   * Pobierz instancję Singletonu klasy BloodGlucoseEstimator
+   * Zwraca instancję Singletonu klasy BloodGlucoseEstimator
    * @return Instancja Singletonu
    */
   public static BloodGlucoseEstimator getInstance() {
@@ -51,7 +52,7 @@ public class BloodGlucoseEstimator {
   }
   
   /**
-   * Ustaw krzywą glikemiczną
+   * Ustawia krzywą glikemiczną
    * @param data tablica double z wartościami pomiarów w czasie 0 30 60 120 180 240 300 300 min od spożycia preparatu z glukozy
    * @param sW Ilość glukozy w preparacie w gramach
    */
@@ -64,7 +65,7 @@ public class BloodGlucoseEstimator {
   }
   
   /**
-   * Ustaw aktualną, zmierzoną wartość glukozy we krwi
+   * Ustawia aktualną, zmierzoną wartość glukozy we krwi
    * @param value Wartość pomiaru w mg/dl
    */
   public void setGlucoseValue(double value) {
@@ -80,7 +81,7 @@ public class BloodGlucoseEstimator {
   }
 
   /**
-   * Oblicz estymowane wartości poziomu cukru we krwi przez zadany czas
+   * Oblicza estymowane wartości poziomu cukru we krwi przez zadany czas
    * @param ig Indeks glikemiczny potrawy
    * @param howlong Długość estymaczji w minutach
    * @return Tablica wartości poziomu cukru co minutę
@@ -108,7 +109,7 @@ public class BloodGlucoseEstimator {
   /**
    * Tak jak estimate ale wynik jest zapisywany
    * @param ig Indeks glikemiczny potrawy
-   * @param howlong Długość estymaczji w minutach
+   * @param howlong Długość estymacji w minutach
    */
   public void saveEstimatimation(double ig, int howlong) {
     double output[] = estimate(ig, howlong);    
@@ -140,7 +141,7 @@ public class BloodGlucoseEstimator {
    * @return Wartość poziomu cukru w mg/dl
    */
   private double getlastValue(int i, Time t) {
-    i = i + (t.hour - estimationStart.hour)*60 + t.minute - estimationStart.minute;
+    i = i + (int) TimeDiff.inMinutes(t, estimationStart);
     try {
       if (i >= lastValues.length) {
         return lastValues[lastValues.length -1];
