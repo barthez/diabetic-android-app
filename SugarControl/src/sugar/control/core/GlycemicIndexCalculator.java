@@ -1,10 +1,18 @@
 package sugar.control.core;
 
 
+/**
+ * @author Marta Drabarczyk
+ *
+ */
 public class GlycemicIndexCalculator {
 	
 	static GlycemicIndexCalculator instance = null;
-	  public static GlycemicIndexCalculator getInstance() {
+		/**
+	   * Zwraca instancję Singletonu klasy GlycemicIndexCalculator
+	   * @return Instancja Singletonu
+	   */
+	public static GlycemicIndexCalculator getInstance() {
 	    if (instance == null) {
 	      instance = new GlycemicIndexCalculator();
 	    }
@@ -12,9 +20,14 @@ public class GlycemicIndexCalculator {
 	  }
 	
 	
+	/**
+	 * Oblicza indeks glikemiczny podanej ilości danego produktu
+	 * @param ig indeks glikemiczny produktu
+	 * @param weight waga produktu (w gramach)
+	 * @param carbonPerGram ilość węglowodanów na gram produktu
+	 * @return indeks glikemiczny podanej ilości danego produktu
+	 */
 	public double calculateIndex(double ig,double weight, double carbonPerGram ){
-		double index;
-		index = Math.round(((weight*carbonPerGram)/50)*ig);
-		return index;
+		return Math.round(((weight*carbonPerGram)/50)*ig);
 	}
 }
