@@ -2,6 +2,7 @@ package sugar.control.core;
 
 import android.text.format.Time;
 import sugar.control.utils.Spline;
+import sugar.control.utils.TimeDiff;
 
 /**
  * !ATTENTIONE! API może ulegać zmianie
@@ -140,7 +141,7 @@ public class BloodGlucoseEstimator {
    * @return Wartość poziomu cukru w mg/dl
    */
   private double getlastValue(int i, Time t) {
-    i = i + (t.hour - estimationStart.hour)*60 + t.minute - estimationStart.minute;
+    i = i + (int) TimeDiff.inMinutes(t, estimationStart);
     try {
       if (i >= lastValues.length) {
         return lastValues[lastValues.length -1];
