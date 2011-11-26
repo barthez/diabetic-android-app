@@ -21,6 +21,7 @@
         <activity android:name=".ShowSugar"></activity>
         <activity android:name=".InsertSugar"></activity>
         <activity android:name=".CanEat"></activity>
+        <activity android:name=".FoodListActivity"></activity>
         <activity android:name=".JustAte"></activity>
         <activity android:name=".Settings"></activity>
     </application>
