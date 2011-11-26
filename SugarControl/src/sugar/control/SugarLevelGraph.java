@@ -24,10 +24,11 @@ public class SugarLevelGraph extends Activity {
         setContentView(R.layout.graph);
 
         double [] bloodG= {80, 90, 105, 90, 80, 80, 80, 80};
-        BloodGlucoseEstimator bge = new BloodGlucoseEstimator();
-        bge.setGTTCurve(bloodG, 50);
-        
-        double [] wynik = bge.estimate(100, 30);
+
+          BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
+
+          bge.setGTTCurve(bloodG, 50);
+          bge.setGlucoseValue(80.5);
 
 
 

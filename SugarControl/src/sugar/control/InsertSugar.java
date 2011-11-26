@@ -20,7 +20,7 @@ public class InsertSugar extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.insertsugar);
 
-    et = (EditText) findViewById(R.id.editText1);
+    //et = (EditText) findViewById(R.id.editText1);
     
     Button estimation = (Button) findViewById(R.id.estimation);
     estimation.setOnClickListener(new OnClickListener() {
