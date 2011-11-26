@@ -6,12 +6,6 @@
         android:gravity="center">
 	        
 	        <Button
-	            android:id="@+id/drawgraph"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="Wyświetl graf" />
-
-                <Button
 	            android:id="@+id/selectproduct"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
@@ -64,11 +58,11 @@
             android:gravity="center"
             android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
-	       <Button
-	            android:id="@+id/showgraph"
+               <Button
+	            android:id="@+id/drawgraph"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:text="Wyświetl graf" 
-	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	            android:text="Wyświetl graf"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 	        
     </TableLayout>
