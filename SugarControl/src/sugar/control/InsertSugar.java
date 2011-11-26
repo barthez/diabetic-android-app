@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import sugar.control.core.BloodGlucoseEstimator;
 
 public class InsertSugar extends Activity {
+  
+  EditText et;
 
   /** Called when the activity is first created. */
   @Override
@@ -17,15 +20,7 @@ public class InsertSugar extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.insertsugar);
 
-    Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-    MainMenu.setOnClickListener(new OnClickListener() {
-
-      public void onClick(View v) {
-        Intent InsertSugarIntent = new Intent(InsertSugar.this, MainMenu.class);
-        startActivity(InsertSugarIntent);
-      }
-    });
-    
+    et = (EditText) findViewById(R.id.editText1);
     
     Button estimation = (Button) findViewById(R.id.estimation);
     estimation.setOnClickListener(new OnClickListener() {
@@ -35,9 +30,10 @@ public class InsertSugar extends Activity {
         try {
           double [] bloodG= {80, 90, 105, 90, 80, 80, 80, 80};
 
-          BloodGlucoseEstimator bge = new BloodGlucoseEstimator();
+          BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
 
           bge.setGTTCurve(bloodG, 50);
+          bge.setGlucoseValue(80.5);
           
           double [] wynik = bge.estimate(100, 30);
           test.setText(" ");

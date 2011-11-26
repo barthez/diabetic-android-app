@@ -15,8 +15,8 @@ public class Spline {
       throw new IllegalArgumentException("Długości tablicy argumentów musi być równa długości tablicy wartości.");
     }
 
-    if (_x.length < 3) {
-      throw new IllegalArgumentException("Muszą być podane conajmniej 2 wartości.");
+    if (_x.length <= 3) {
+      throw new IllegalArgumentException("Muszą być podane conajmniej 3 wartości.");
     }
 
     n = _x.length;
@@ -36,7 +36,7 @@ public class Spline {
 
   public double val(double _x) {
     if (_x < x[0] || _x > x[n - 1]) {
-      throw new IndexOutOfBoundsException("Wartość spoza zakersu");
+      throw new IllegalArgumentException("Wartość spoza zakersu");
     }
     int it = 0;
     for (int i = 1; i < n; ++i) {
@@ -94,7 +94,13 @@ public class Spline {
       dv[i] = (k[i] - e[i] * k[i + 1]) / d[i];
     }
 
-
-
+  }
+  
+  public double lastValue() {
+    return x[n-1];
+  }
+  
+  public double firstValue() {
+    return x[0];
   }
 }

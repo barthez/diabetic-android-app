@@ -14,13 +14,13 @@ public class JustAte extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.justate);
         
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent JustAteIntent = new Intent(JustAte.this,MainMenu.class);
-                startActivity(JustAteIntent);
-            }
-        });
+//        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
+//        MainMenu.setOnClickListener(new OnClickListener() {
+//            public void onClick(View v) {
+//                Intent JustAteIntent = new Intent(JustAte.this,MainMenu.class);
+//                startActivity(JustAteIntent);
+//            }
+//        });
     }
 
 }

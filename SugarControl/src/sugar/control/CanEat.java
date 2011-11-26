@@ -29,13 +29,7 @@ public class CanEat extends Activity {
             }
         });
 
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent CanEatIntent = new Intent(CanEat.this,MainMenu.class);
-                startActivity(CanEatIntent);
-            }
-        });
+
     }
 
     private void startGraphActivity(Class<? extends Activity> activity) {
