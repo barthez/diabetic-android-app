@@ -20,43 +20,19 @@
             android:layout_height="wrap_content" >
         </TableRow>
 
-        <RadioGroup
-            android:id="@+id/radioGroup1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
 
-            <RadioButton
-                android:id="@+id/radio0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="duża aktywność" />
-
-            <RadioButton
-                android:id="@+id/radio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="normalna aktywność" />
-
-            <RadioButton
-                android:id="@+id/radio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mała aktywność" />
-        </RadioGroup>
-
-  <TextView
-            android:id="@+id/insertView"
-            android:layout_width="fill_parent"
-            android:layout_height="500px"
-            android:gravity="top"
-            android:text="@string/hello" />
-                 
-  <Button
-      android:id="@+id/estimation"
-      android:layout_width="200px"
-      android:layout_height="70px"
-      android:text="Estymuj" />
+		  <TextView
+		            android:id="@+id/insertView"
+		            android:layout_width="fill_parent"
+		            android:layout_height="500px"
+		            android:gravity="top"
+		            android:text="@string/hello" />
+		                 
+		  <Button
+		      android:id="@+id/estimation"
+		      android:layout_width="200px"
+		      android:layout_height="70px"
+		      android:text="Estymuj" />
 
 </TableLayout>
 
