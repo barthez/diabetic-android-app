@@ -1,39 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/insertsugarlayout"
+<RelativeLayout 
+    
+    android:layout_height="fill_parent" 
+    android:layout_width="fill_parent" 
+    android:id="@+id/frameLayout1" 
+    xmlns:android="http://schemas.android.com/apk/res/android"> 
+   
+    <TextView
+        android:id="@+id/labelsugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+         android:layout_marginTop="14dp"
+        android:text="Wprowadź aktualny poziom cukru " />
+
+    <EditText
+        android:id="@+id/sugar"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+  		android:layout_marginBottom="14dp"
+  		android:digits="1234567890"
+        android:layout_below="@+id/labelsugar"
+         />
+   
+   <RadioGroup android:id="@+id/physicalactivity" android:layout_height="wrap_content" android:layout_width="fill_parent"  android:layout_below="@+id/sugar">
+        <TextView android:text="Twoja aktywność fizyczna:" android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+        <RadioButton android:checked="false" android:text="niska" android:id="@+id/low"/>
+        <RadioButton android:checked="false" android:text="normalna" android:id="@+id/normal"/>
+        <RadioButton android:checked="false" android:text="wysoka" android:id="@+id/high"/>
+    </RadioGroup>
+    
+     <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/physicalactivity"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"
+        android:text="OK" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/ok"
+        android:layout_alignTop="@+id/ok"
+        
+        android:text="Cancel" />
+  
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:numeric="integer|decimal" >
-
-            <requestFocus />
-        </EditText>
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
-
-
-  <TextView
-            android:id="@+id/insertView"
-            android:layout_width="fill_parent"
-            android:layout_height="300px"
-            android:gravity="top"
-            android:text="@string/hello" />
-                 
-  <Button
-      android:id="@+id/estimation"
-      android:layout_width="200px"
-      android:layout_height="70px"
-      android:text="Estymuj" />
-
-</TableLayout>
-
+   <Button
+       android:id="@+id/backtomainmenu"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentLeft="true"
+       android:text="Wróć z InsertSugar" />
+
+   <Button
+       android:id="@+id/estimation"
+       android:layout_width="200px"
+       android:layout_height="70px"
+       android:layout_above="@+id/backtomainmenu"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentRight="true"
+       android:layout_marginBottom="28dp"
+       android:text="Estymuj" />
+ 
+</RelativeLayout>
