@@ -18,7 +18,7 @@ public OnClickListener listenerOK = new OnClickListener(){
 		public void onClick(View v) {
 			
 					RadioGroup phys = (RadioGroup)findViewById(R.id.physicalactivity);
-					String physAnswer="nie wysz≥o";
+					String physAnswer="nie wysz≈Ço";
 					switch(phys.getCheckedRadioButtonId())
 					{case R.id.low: 
 						physAnswer="niska"; 
@@ -33,9 +33,9 @@ public OnClickListener listenerOK = new OnClickListener(){
 					}
 					EditText a = (EditText)findViewById(R.id.sugar);
 					String control=(a.getText().toString());
-			        if(control.isEmpty() || physAnswer=="nie wysz≥o" ){
+			        if(control.equals(null) || control.equals("") || physAnswer=="nie wysz≈Ço" ){
 			        	TextView con=(TextView)findViewById(R.id.cont);
-			        	con.setText("Uzupe≥nij wszytkie pola!");
+			        	con.setText("Uzupe≈Çnij wszytkie pola!");
 			        	return;
 			        	}
 			        
@@ -48,7 +48,7 @@ public OnClickListener listenerOK = new OnClickListener(){
 	                
                     Intent InToShow = new Intent(InsertSugar.this, ShowInsert.class);
 	          
-	                InToShow.putExtra("ph","\nAktywnoúÊ fizyczna: "+physAnswer);
+	                InToShow.putExtra("ph","\nAktywno≈õƒá fizyczna: "+physAnswer);
 	                InToShow.putExtra("sug",sugarLev);
 	                
 	                startActivityForResult(InToShow, 1);    
