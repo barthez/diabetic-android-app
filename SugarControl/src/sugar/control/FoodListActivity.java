@@ -51,12 +51,29 @@ public class FoodListActivity extends ListActivity {
             "donaty i pączki", "mufinki (średnio)", "naleśniki", "paszteciki",
             "placek z owocami", "rogalik", "tort", "wafle", "ciasteczka owsiane",
             "ciateczka ryżowe", "Digestives", "LU petitki", "Petit Beurre (LU)",
-            "wafle ryżowe", "wafle waniliowe"};
+            "wafle ryżowe", "wafle waniliowe", "50g maltozy", "fruktoza", "glukoza", 
+            "laktoza", "miód", "xylitol", "stevia", "syrop kukurydziany", "maltitol", 
+            "cukier trzcinowy", "nektar z kaktusa niebieskiej agawy 90% fruktozy", 
+            "sacharoza", "makaron imstant (zalewany wrzątkiem)", "makaron rurki",
+            "makaron ryżowy", "makaron z serem", "Ravioli z mięsem", "Spaghetti z mąki białej",
+            "Spaghetti z mąki białej gotowane 10-15 min", "Spaghetti z mąki białej gotowane 20 min",
+            "Spaghetti z mąki białej gotowane 5 min", "Spaghetti z mąki pełnowartościowej (razowe)",
+            "jogurt 0% tłuszczu", "jogurt naturalny", "lody", "mleko pełne (3% tłuszczu)",
+            "mleko pełne z otrębami pszennymi (20g)", "mleko skondensowane, słodzone",
+            "mleko sojowe 1.5% tłuszczu, 120mg wapnia", "mleko sojowe 3% tłuszczu, 0mg wapnia",
+            "mleko sojowe 3% tłuszczu, 120mg wapnia", "mleko zsiadle", "napój z mleka sojowego"};
+
         double[] foodIG = new double[]{73, 67, 54, 92, 55, 47, 38, 46, 67, 69,
-            67, 85, 59, 76, 42, 87, 76, 57, 78, 59, 49, 51, 64, 77};
+            67, 85, 59, 76, 42, 87, 76, 57, 78, 59, 49, 51, 64, 77, 105, 19, 99, 
+            46, 55, 7, 3, 75, 26, 87, 11, 68, 47, 47, 40, 64, 39, 42, 44, 61,
+            38, 37, 27, 36, 61, 27, 27, 61, 44, 44, 36, 32, 32};
+
         double[] foodCarbo = new double[]{0.68, 0.58, 0.53, 0.36, 0.36, 0.48,
             0.47, 0.57, 0.46, 0.38, 0.54, 0.51, 0.46, 0.49, 0.52, 0.58, 0.37,
-            0.6, 0.84, 0.64, 0.7, 0.72, 0.64, 0.72};
+            0.6, 0.84, 0.64, 0.7, 0.72, 0.64, 0.72, 1, 1, 1, 1, 0.72, 0, 0, 0,
+            0, 0, 0.8, 1, 0.22, 0.27, 0.22, 0.28, 0.21, 0.26, 0.27, 0.24, 0.27,
+            0.23, 0.12, 0.05, 0.26, 0.05, 0.05, 0.54, 0.07, 0.07, 0.07, 0.05,
+            0.09};
 
         for(int i=0; i<foodNames.length; ++i){
             Food f = new Food(foodNames[i], foodIG[i], foodCarbo[i]);
