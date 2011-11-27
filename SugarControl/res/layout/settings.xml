@@ -7,16 +7,7 @@
   >
 
     <!-- android:gravity="top" -->
-<ScrollView android:id="@+id/ScrollView01"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
 
-        android:overScrollMode="always" 
-        android:isScrollContainer="true" 
-        android:scrollbarAlwaysDrawVerticalTrack="true" 
-        android:scrollbarStyle="outsideInset" 
-        android:scrollbars="vertical"
->
 
 <RelativeLayout
     android:id="@+id/LinearLayout02"
@@ -238,6 +229,5 @@ android:layout_height="wrap_content"
        android:layout_below="@+id/ok" />
 
 </RelativeLayout>
-</ScrollView>
 
 </RelativeLayout>
