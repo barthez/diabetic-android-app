@@ -1,14 +1,25 @@
 
 package sugar.control;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Contacts.People;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import sugar.control.database.DatabaseAdapter;
-import sugar.control.database.Food;
+import android.widget.TextView;
+import android.widget.Toast;
+import sugar.control.database.FoodDatabaseAdapter;
+import sugar.control.utils.Food;
 
 /**
  *
@@ -22,10 +33,12 @@ public class FoodListActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foodlist);
+        final Context cx = getApplicationContext();
         //Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
         //startManagingCursor(c);
         //String[] cols = new String[]{People.NAME};
-        DatabaseAdapter da = new DatabaseAdapter(this);
+
+        FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
         
         Food banan = new Food("banan", 1, 2);
         Food truskawka = new Food("truskawka", 3, 4);
@@ -34,6 +47,7 @@ public class FoodListActivity extends ListActivity {
         Food pomidor = new Food("pomidor", 9, 10);
 
         da.open();
+        
         da.deleteAll();
         da.insertFood(banan);
         da.insertFood(truskawka);
@@ -41,17 +55,43 @@ public class FoodListActivity extends ListActivity {
         da.insertFood(czekolada);
         da.insertFood(pomidor);
 
+
         Cursor c = da.getAllEntries();
 
-        
-        da.open();
-
-
-        String[] cols  = new String[]{DatabaseAdapter.FOOD_NAME};
+        String[] cols  = new String[]{FoodDatabaseAdapter.FOOD_NAME};
 
         int[] names = new int[]{R.id.row_tv};
         adapter = new SimpleCursorAdapter(this, R.layout.list_item, c, cols, names);
         this.setListAdapter(adapter);
         da.close();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        super.onCreateOptionsMenu(menu);
+
+
+
+        menu.add(0, 1, 1, "Zjedz!");            // to menu tez bedzie przeniesione!
+        menu.add(0, 2, 2,  "Stworz posilek!");
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch(item.getItemId()){
+            case 1:
+
+                Intent MainMenuIntent = new Intent(FoodListActivity.this,ShowSugar.class);  // tu ma przechodzic gdzie indziej ostatecznie!
+                startActivity(MainMenuIntent);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
