@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-//import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.RadioGroup;
 
 public class InsertSugar  extends Activity {
@@ -31,8 +31,15 @@ public OnClickListener listenerOK = new OnClickListener(){
 						break;
 					default:break;
 					}
-					EditText a = (EditText)findViewById(R.id.sugar);	
-			        double sugarLev = Double.parseDouble(a.getText().toString());
+					EditText a = (EditText)findViewById(R.id.sugar);
+					String control=(a.getText().toString());
+			        if(control.isEmpty() || physAnswer=="nie wysz³o" ){
+			        	TextView con=(TextView)findViewById(R.id.cont);
+			        	con.setText("Uzupe³nij wszytkie pola!");
+			        	return;
+			        	}
+			        
+					double sugarLev = Double.parseDouble(a.getText().toString());
 		           
 			     
 	                
@@ -71,7 +78,17 @@ public OnClickListener listenerOK = new OnClickListener(){
         
        Button OK = (Button)findViewById(R.id.ok) ;
        OK.setOnClickListener(listenerOK);
+       
+       
+     //Cancel Button
+       final Button cancel = (Button) findViewById(R.id.cancel);
+       cancel.setOnClickListener(new View.OnClickListener() {
+       public void onClick(View v) {
+       // Perform action on click
+    	   EditText et = (EditText)findViewById(R.id.sugar);
+            et.setText("");
+       }
         
-    }
+    });
 
-}
+}}
