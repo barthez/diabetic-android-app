@@ -13,16 +13,7 @@ public class MainMenu extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        DatabaseAdapter da = new DatabaseAdapter(this);
-        
-        Food banan = new Food("banan", 100, 200);
-        Food truskawka = new Food("truskawka", 300, 30);
 
-        da.open();
-        da.insertFood(banan);
-        da.insertFood(truskawka);
-
-        da.close();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         

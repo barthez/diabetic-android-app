@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.Contacts.People;
 import android.widget.SimpleCursorAdapter;
 import sugar.control.database.DatabaseAdapter;
+import sugar.control.database.Food;
 
 /**
  *
@@ -20,29 +21,37 @@ public class FoodListActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.foodlist);
         //Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
         //startManagingCursor(c);
         //String[] cols = new String[]{People.NAME};
-        DatabaseAdapter dba = new DatabaseAdapter(this);
-        dba.open();
-        Cursor c = dba.getAllEntries();
-        startManagingCursor(c);
-        dba.close();
-        String[] cols = null;
-        //if(c.getColumnCount() != 0){
-        //    cols = new String[c.getColumnCount()];
-        //}
-        cols = new String[2];
-        cols[0] = "dupa";
-        cols[1] = "DUPA";
-        //int i=0;
-        //for(c.moveToFirst();c.moveToNext();c.isAfterLast()){
+        DatabaseAdapter da = new DatabaseAdapter(this);
+        
+        Food banan = new Food("banan", 1, 2);
+        Food truskawka = new Food("truskawka", 3, 4);
+        Food sliwka = new Food("sliwka", 5, 6);
+        Food czekolada = new Food("czekolada", 7, 8);
+        Food pomidor = new Food("pomidor", 9, 10);
 
-            //cols[i++] = c.getString(c.getColumnIndex(DatabaseAdapter.FOOD_NAME));
-        //}
+        da.open();
+        da.deleteAll();
+        da.insertFood(banan);
+        da.insertFood(truskawka);
+        da.insertFood(sliwka);
+        da.insertFood(czekolada);
+        da.insertFood(pomidor);
+
+        Cursor c = da.getAllEntries();
+
+        
+        da.open();
+
+
+        String[] cols  = new String[]{DatabaseAdapter.FOOD_NAME};
 
         int[] names = new int[]{R.id.row_tv};
         adapter = new SimpleCursorAdapter(this, R.layout.list_item, c, cols, names);
         this.setListAdapter(adapter);
+        da.close();
     }
 }
