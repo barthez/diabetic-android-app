@@ -32,7 +32,7 @@ public OnClickListener listenerOK = new OnClickListener(){
 	                	                
                     Intent ToShow = new Intent(Settings.this, ShowSet.class);
 	          
-	                ToShow.putExtra("name","Imiê: "+name+"\n");
+	                ToShow.putExtra("name","ImiÄ™: "+name+"\n");
 	                ToShow.putExtra("60",h);
 	                ToShow.putExtra("120",hh);
 	                startActivityForResult(ToShow, 1);    
