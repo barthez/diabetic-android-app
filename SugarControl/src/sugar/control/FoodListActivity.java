@@ -12,8 +12,10 @@ import android.provider.Contacts.People;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ public class FoodListActivity extends ListActivity {
         //startManagingCursor(c);
         //String[] cols = new String[]{People.NAME};
 
+        
         FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
         
         Food banan = new Food("banan", 1, 2);
@@ -62,7 +65,13 @@ public class FoodListActivity extends ListActivity {
 
         int[] names = new int[]{R.id.row_tv};
         adapter = new SimpleCursorAdapter(this, R.layout.list_item, c, cols, names);
+        ListView lv = getListView();
+        lv.setChoiceMode(lv.CHOICE_MODE_MULTIPLE);
+        lv.setItemChecked(2, true);
+
+
         this.setListAdapter(adapter);
+
         da.close();
     }
 
@@ -80,14 +89,36 @@ public class FoodListActivity extends ListActivity {
         return true;
     }
 
+    
+    public View getView(final int position, View convertView, ViewGroup parent){
+        
+        return null;
+    }
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
 
         switch(item.getItemId()){
             case 1:
 
-                Intent MainMenuIntent = new Intent(FoodListActivity.this,ShowSugar.class);  // tu ma przechodzic gdzie indziej ostatecznie!
-                startActivity(MainMenuIntent);
+                
+                
+                ListView lv = getListView();    
+                             
+                long[] ids = lv.getCheckItemIds();
+                for(long l: ids){
+                   Food pomidor = new Food(Long.toString(l), l, l);
+                   FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
+                   da.open();
+                   da.insertFood(pomidor);
+                   da.close();
+
+                }
+
+                if(ids.length != 0){
+                    Intent MainMenuIntent = new Intent(FoodListActivity.this,ShowSugar.class);  // tu ma przechodzic gdzie indziej ostatecznie!
+                    startActivity(MainMenuIntent);
+                }
                 return true;
         }
 
