@@ -45,7 +45,10 @@ public OnClickListener listenerOK = new OnClickListener(){
 			        
 			        
 
-			        if(name.isEmpty() || bb.isEmpty() || cc.isEmpty() || dd.isEmpty() || ee.isEmpty() || ff.isEmpty() || gg.isEmpty() || hh.isEmpty() || ii.isEmpty() )
+			        if(name.equals(null) ||name.equals("") || bb.equals(null) ||bb.equals("") || cc.equals(null) ||cc.equals("") 
+			        		|| dd.equals(null) ||dd.equals("") || ee.equals(null) ||ee.equals("") 
+			        		|| ff.equals(null) ||ff.equals("") || gg.equals(null) ||gg.equals("") 
+			        		|| hh.equals(null) ||hh.equals("") || ii.equals(null) ||ii.equals("") )
 			        {
 			        	CharSequence text = "Uzupełnij wszystkie pola";
 			            Context context = getApplicationContext();
