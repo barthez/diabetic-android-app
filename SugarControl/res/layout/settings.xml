@@ -2,12 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/frameLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <!-- android:gravity="top" -->
+    android:layout_height="fill_parent" 
+    
   >
 
-  
+    <!-- android:gravity="top" -->
+<ScrollView android:id="@+id/ScrollView01"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+
+        android:overScrollMode="always" 
+        android:isScrollContainer="true" 
+        android:scrollbarAlwaysDrawVerticalTrack="true" 
+        android:scrollbarStyle="outsideInset" 
+        android:scrollbars="vertical"
+>
+
+<RelativeLayout
+    android:id="@+id/LinearLayout02"
+    android:layout_width="wrap_content"
+    android:layout_height="480dp"
+    android:orientation="vertical" >
+
     <Button
         android:id="@+id/backtomainmenu"
         android:layout_width="match_parent"
@@ -16,13 +32,13 @@
         android:layout_alignParentLeft="true"
         android:text="Wróć z Settings" />
 
-   <TextView
+    <TextView
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-         android:layout_marginTop="14dp"
+        android:layout_marginTop="14dp"
         android:text="Wpisz swoje imię" />
 
     <EditText
@@ -30,72 +46,198 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-  		android:layout_marginBottom="14dp"
-        android:layout_below="@+id/label"
-         />
+        android:layout_below="@+id/label" />
 
     <TextView
-        android:id="@+id/label2"
+        android:id="@+id/labell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/name"
-      
-        android:text="Podaj poziom cukru po 60 min." />
-    
+        android:text="Podaj poziom cukru po: " />
+
+    <TextView
+        android:id="@+id/label0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/labell"
+        android:layout_below="@+id/labell"
+        android:text="0h" />
+
     <EditText
-        android:id="@+id/h"
+        android:id="@+id/h0"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label0"
+        android:layout_marginBottom="14dp"
+        android:layout_toLeftOf="@+id/h05"
+        android:digits="1234567890"
+        android:maxLength="4" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/h05"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label2"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="14dp"
-      
+        android:layout_below="@+id/label0"
+        android:layout_toRightOf="@+id/label0"
         android:digits="1234567890"
         android:maxLength="4" >
 
-    
-     </EditText>
-    
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/h1"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/h0"
+        android:layout_below="@+id/h0"
+        android:digits="1234567890"
+        android:maxLength="4" />
+
+    <EditText
+        android:id="@+id/h2"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/h1"
+        android:layout_alignBottom="@+id/h1"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_alignParentRight="true"
+        android:digits="1234567890"
+        android:maxLength="4" />
+
     <TextView
-        android:id="@+id/label3"
+        android:id="@+id/label05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/h1"
+        android:layout_alignParentLeft="true"
+        android:text="1h" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/h2"
+        android:layout_alignLeft="@+id/h05"
+        android:text="2h" />
+
+    <TextView
+        android:id="@+id/TextView03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/h"
-        android:text="Podaj poziom cukru po 120 min." />
-        
-      <EditText
-        android:id="@+id/hh"
-        android:layout_marginBottom="14dp"
-        android:layout_width="fill_parent"
+        android:layout_below="@+id/h1"
+        android:text="3h" />
+
+    <EditText
+        android:id="@+id/h3"
+        android:layout_width="10dip"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-		android:layout_below="@+id/label3"
-	
+        android:layout_alignRight="@+id/h1"
+        android:layout_below="@+id/TextView03"
         android:digits="1234567890"
         android:maxLength="4" />
-        
-        
-        
- <Button
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/h05"
+        android:layout_alignLeft="@+id/h05"
+        android:text="0.5h" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/h3"
+        android:text="5h" />
+
+    <TextView
+        android:id="@+id/TextView05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/h2"
+        android:layout_below="@+id/h2"
+        android:text="4h" />
+
+
+    <EditText
+        android:id="@+id/h5"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/h3"
+        android:layout_below="@+id/TextView04"
+        android:digits="1234567890"
+        android:maxLength="4" />
+
+
+
+    <EditText
+        android:id="@+id/h6"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView05"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/TextView04"
+        android:digits="1234567890"
+        android:maxLength="4" />
+
+
+    <Button
         android:id="@+id/ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hh"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/h5"
         android:text="OK" />
+
     <Button
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/ok"
-        android:layout_alignTop="@+id/ok"
+        android:layout_below="@+id/h5"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/ok"
         android:text="Cancel" />
 
-  
 
- 
+
+    <EditText
+        android:id="@+id/EditText01"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView05"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/h3"
+        android:digits="1234567890"
+        android:maxLength="4" />
+
+    <TextView
+        android:id="@+id/TextView06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/EditText01"
+        android:layout_below="@+id/EditText01"
+        android:text="6h" />
+    
+       <TextView
+       android:id="@+id/cont"
+       android:layout_width="fill_parent"
+  
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_below="@+id/ok" />
+
+</RelativeLayout>
+</ScrollView>
 
 </RelativeLayout>

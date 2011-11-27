@@ -36,7 +36,7 @@ public class MainMenu extends Activity {
         Button CanEatButton = (Button) findViewById(R.id.caneat);
         CanEatButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                Intent MainMenuIntent = new Intent(MainMenu.this,FoodListActivity.class);
+                Intent MainMenuIntent = new Intent(MainMenu.this, FoodListActivity.class);
                 startActivity(MainMenuIntent);
             }
         });

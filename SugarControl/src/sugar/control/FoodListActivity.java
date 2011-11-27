@@ -42,21 +42,42 @@ public class FoodListActivity extends ListActivity {
 
         
         FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
-        
-        Food banan = new Food("banan", 1, 2);
-        Food truskawka = new Food("truskawka", 3, 4);
-        Food sliwka = new Food("sliwka", 5, 6);
-        Food czekolada = new Food("czekolada", 7, 8);
-        Food pomidor = new Food("pomidor", 9, 10);
-
         da.open();
-        
         da.deleteAll();
-        da.insertFood(banan);
-        da.insertFood(truskawka);
-        da.insertFood(sliwka);
-        da.insertFood(czekolada);
-        da.insertFood(pomidor);
+        String[] foodNames = new String[]{"babka z polewą truskawkową",
+            "bezy", "biszkopt", "bułeczki drożdżowe", "ciasto bananowe bez cukru",
+            "ciasto bananowe z cukrem", "ciasto czekoladowe z polewą czekoladową",
+            "ciasto waniliowe z polewą waniliową", "crumpet (rodzaj naleśnika)",
+            "donaty i pączki", "mufinki (średnio)", "naleśniki", "paszteciki",
+            "placek z owocami", "rogalik", "tort", "wafle", "ciasteczka owsiane",
+            "ciateczka ryżowe", "Digestives", "LU petitki", "Petit Beurre (LU)",
+            "wafle ryżowe", "wafle waniliowe"};
+        double[] foodIG = new double[]{73, 67, 54, 92, 55, 47, 38, 46, 67, 69,
+            67, 85, 59, 76, 42, 87, 76, 57, 78, 59, 49, 51, 64, 77};
+        double[] foodCarbo = new double[]{0.68, 0.58, 0.53, 0.36, 0.36, 0.48,
+            0.47, 0.57, 0.46, 0.38, 0.54, 0.51, 0.46, 0.49, 0.52, 0.58, 0.37,
+            0.6, 0.84, 0.64, 0.7, 0.72, 0.64, 0.72};
+
+        for(int i=0; i<foodNames.length; ++i){
+            Food f = new Food(foodNames[i], foodIG[i], foodCarbo[i]);
+            da.insertFood(f);
+        }
+
+
+//        Food banan = new Food("banan", 1, 2);
+//        Food truskawka = new Food("truskawka", 3, 4);
+//        Food sliwka = new Food("sliwka", 5, 6);
+//        Food czekolada = new Food("czekolada", 7, 8);
+//        Food pomidor = new Food("pomidor", 9, 10);
+//
+//
+//
+//        da.deleteAll();
+//        da.insertFood(banan);
+//        da.insertFood(truskawka);
+//        da.insertFood(sliwka);
+//        da.insertFood(czekolada);
+//        da.insertFood(pomidor);
 
 
         Cursor c = da.getAllEntries();
@@ -115,10 +136,10 @@ public class FoodListActivity extends ListActivity {
 
                 }
 
-                if(ids.length != 0){
-                    Intent MainMenuIntent = new Intent(FoodListActivity.this,ShowSugar.class);  // tu ma przechodzic gdzie indziej ostatecznie!
-                    startActivity(MainMenuIntent);
-                }
+//                if(ids.length != 0){
+//                    Intent MainMenuIntent = new Intent(FoodListActivity.this,ShowSugar.class);  // tu ma przechodzic gdzie indziej ostatecznie!
+//                    startActivity(MainMenuIntent);
+//                }
                 return true;
         }
 
