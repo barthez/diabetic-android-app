@@ -47,7 +47,7 @@ public OnClickListener listenerOK = new OnClickListener(){
 
 			        if(name.isEmpty() || bb.isEmpty() || cc.isEmpty() || dd.isEmpty() || ee.isEmpty() || ff.isEmpty() || gg.isEmpty() || hh.isEmpty() || ii.isEmpty() )
 			        {
-			        	CharSequence text = "Uzupe³nij wszystkie pola";
+			        	CharSequence text = "UzupeÅ‚nij wszystkie pola";
 			            Context context = getApplicationContext();
 			            int duration = Toast.LENGTH_LONG;
 			             
@@ -56,7 +56,7 @@ public OnClickListener listenerOK = new OnClickListener(){
 			        	
 			        	
 			        	//TextView control=(TextView)findViewById(R.id.cont);
-			        	//control.setText("Uzupe³nij wszytkie pola!");
+			        	//control.setText("Uzupeï¿½nij wszytkie pola!");
 			        	return;
 			        	}
 		         
@@ -76,7 +76,7 @@ public OnClickListener listenerOK = new OnClickListener(){
 	                	                
                     Intent ToShow = new Intent(Settings.this, ShowSet.class);
       	          
-	                ToShow.putExtra("name","Imiê: "+name+"\n");
+	                ToShow.putExtra("name","ImiÄ™: "+name+"\n");
 	                ToShow.putExtra("0",h0);
 	                ToShow.putExtra("05",h05);
 	                ToShow.putExtra("1",h1);

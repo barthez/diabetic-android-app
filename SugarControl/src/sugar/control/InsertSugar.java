@@ -62,8 +62,6 @@ public OnClickListener listenerOK = new OnClickListener(){
 	
 	
 	
-    /** Called when the activity is first created. */
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertsugar);
