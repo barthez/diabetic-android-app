@@ -5,13 +5,15 @@ import java.util.List;
 import sugar.control.R;
 
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class FoodArrayAdapter extends ArrayAdapter<Food> {
 
@@ -26,7 +28,7 @@ public class FoodArrayAdapter extends ArrayAdapter<Food> {
 
 	static class ViewHolder {
 		protected TextView text;
-		protected CheckBox checkbox;
+		protected EditText weight;
 	}
 
 	@Override
@@ -37,28 +39,33 @@ public class FoodArrayAdapter extends ArrayAdapter<Food> {
 			view = inflator.inflate(R.layout.rowbuttonlayout, null);
 			final ViewHolder viewHolder = new ViewHolder();
 			viewHolder.text = (TextView) view.findViewById(R.id.label);
-			viewHolder.checkbox = (CheckBox) view.findViewById(R.id.check);
-			viewHolder.checkbox
-					.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
+			viewHolder.weight = (EditText) view.findViewById(R.id.weight);
+			viewHolder.weight
+					.setOnEditorActionListener(new OnEditorActionListener() {
+						
 						@Override
-						public void onCheckedChanged(CompoundButton buttonView,
-								boolean isChecked) {
-							Food element = (Food) viewHolder.checkbox
-									.getTag();
-							element.setSelected(buttonView.isChecked());
-
+						public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+							Food element = (Food) viewHolder.weight
+							.getTag();
+							try{
+							element.setWeight(Double.parseDouble(v.getText().toString()));
+							}catch (Exception e) {
+								viewHolder.weight.setText("0.0");
+								element.setWeight(0);
+							}
+							return true;
 						}
 					});
+			
 			view.setTag(viewHolder);
-			viewHolder.checkbox.setTag(list.get(position));
+			viewHolder.weight.setTag(list.get(position));
 		} else {
 			view = convertView;
-			((ViewHolder) view.getTag()).checkbox.setTag(list.get(position));
+			((ViewHolder) view.getTag()).weight.setTag(list.get(position));
 		}
 		ViewHolder holder = (ViewHolder) view.getTag();
 		holder.text.setText(list.get(position).getFoodName());
-		holder.checkbox.setChecked(list.get(position).isSelected());
+		holder.weight.setText(String.valueOf(list.get(position).getWeight()));
 		return view;
 	}
 }

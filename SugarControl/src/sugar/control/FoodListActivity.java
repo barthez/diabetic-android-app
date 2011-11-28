@@ -156,7 +156,7 @@ public class FoodListActivity extends ListActivity {
                 GlycemicIndexCalculator g = GlycemicIndexCalculator.getInstance();
                 boolean selected = false;
             	for(int i=0;i<this.foodList.size();i++) {
-            		if(foodList.get(i).isSelected()==true) {
+            		if(foodList.get(i).getWeight()>0) {
             			g.addFood(foodList.get(i));
             			selected = true;
             		}
