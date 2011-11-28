@@ -2,6 +2,7 @@ package sugar.control;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,6 +47,20 @@ public class SugarLevelGraph extends Activity {
     // init example series data
     GraphViewSeries exampleSeries = new GraphViewSeries(data);
 
+    //granica hiperglikemiczna
+    data = new GraphViewData[output.length];
+    for (int i = 0; i < output.length; ++i) {
+      data[i] = new GraphViewData(i, 130);
+    }
+
+    GraphViewSeries hyperglycemicSeries = new GraphViewSeries("Hiperglikemia", Color.rgb(200, 50, 00) ,data);
+
+    data = new GraphViewData[output.length];
+    for (int i = 0; i < output.length; ++i) {
+      data[i] = new GraphViewData(i, 50);
+    }
+
+    GraphViewSeries lowSeries = new GraphViewSeries("Dolna granica", Color.rgb(255, 215, 00) ,data);
 
     GraphView graphView = new LineGraphView(this, "Poziom cukru [mg/dl]");
 
@@ -53,6 +68,8 @@ public class SugarLevelGraph extends Activity {
 
     graphView.setHorizontalLabels(new String[]{"0h", "1h", "2h", "3h", "4h", "5h", "6h"});
     graphView.addSeries(exampleSeries); // data
+    graphView.addSeries(hyperglycemicSeries);
+    graphView.addSeries(lowSeries);
 
     graphView.setViewPort(0, 360);
 
