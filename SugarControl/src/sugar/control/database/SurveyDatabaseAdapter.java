@@ -101,15 +101,47 @@ public class SurveyDatabaseAdapter {
         return time;
     }
 
-
-    // to jeszcze jak widać nie istnieje
     public double[] getResultOfLastSurvey(){
-        return null;
+        Cursor surveysCursor = getAllSurveyEntries();
+        surveysCursor.moveToLast();
+        int lastSurveyID = surveysCursor.getInt(surveysCursor.getColumnIndex(SURVEY_KEY_ID));
+
+        String[] resultsColumns = {RESULTS_SURVEY_ID, RESULT_NUMBER, RESULT_VALUE};
+        String resultsWhere = RESULTS_SURVEY_ID + "=" + lastSurveyID;
+        Cursor resultsCursor = db.query(true, RESULTS_TABLE_NAME, resultsColumns, resultsWhere, null, null, null, null, null);
+
+        double[] results = new double[resultsCursor.getCount()];
+        int i=0;
+        for(resultsCursor.moveToFirst(); !resultsCursor.isAfterLast(); resultsCursor.moveToNext()){
+            results[i++] = resultsCursor.getDouble(resultsCursor.getColumnIndex(RESULT_VALUE));
+        }
+
+        return results;
+
     }
 
-    // to tez jeszcze nie istnieje
     public double[] getResultByTime(Time time){
-        return null;
+        long date = time.toMillis(true);
+        int setSurveyID = 0;
+        Cursor surveysCursor = getAllSurveyEntries();
+        for(surveysCursor.moveToFirst(); !surveysCursor.isAfterLast(); surveysCursor.moveToNext()){
+            if(surveysCursor.getLong(surveysCursor.getColumnIndex(SURVEY_DATE)) == date){
+                setSurveyID = surveysCursor.getInt(surveysCursor.getColumnIndex(SURVEY_KEY_ID));
+            }
+        }
+
+        String[] resultsColumns = {RESULTS_SURVEY_ID, RESULT_NUMBER, RESULT_VALUE};
+        String resultsWhere = RESULTS_SURVEY_ID + "=" + setSurveyID;
+        Cursor resultsCursor = db.query(true, RESULTS_TABLE_NAME, resultsColumns, resultsWhere, null, null, null, null, null);
+
+        double[] results = new double[resultsCursor.getCount()];
+        int i=0;
+
+        for(resultsCursor.moveToFirst(); !resultsCursor.isAfterLast(); resultsCursor.moveToNext()){
+            results[i++] = resultsCursor.getDouble(resultsCursor.getColumnIndex(RESULT_VALUE));
+        }
+        
+        return results;
     }
 
     private long insertSurvey(Survey survey) {
@@ -163,11 +195,10 @@ public class SurveyDatabaseAdapter {
 
         long date = new Long(surveyCursor.getLong(surveyCursor.getColumnIndex(SURVEY_DATE)));
 
-        Cursor allResults = getAllResultsEntries();
-        double[] results = new double[allResults.getColumnCount()];
+        double[] results = new double[resultsCursor.getCount()];
         int i=0;
-        for(allResults.moveToFirst(); !allResults.isAfterLast(); allResults.moveToNext()){
-            results[i++] = allResults.getDouble(allResults.getColumnIndex(RESULT_VALUE));
+        for(resultsCursor.moveToFirst(); !resultsCursor.isAfterLast(); resultsCursor.moveToNext()){
+            results[i++] = resultsCursor.getDouble(resultsCursor.getColumnIndex(RESULT_VALUE));
         }
 
         Survey survey = new Survey(date, results);
