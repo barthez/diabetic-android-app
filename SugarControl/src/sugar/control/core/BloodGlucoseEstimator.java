@@ -66,6 +66,7 @@ public class BloodGlucoseEstimator {
    */
   public void setGlucoseValue(double value) {
     if (lastValues == null) {
+      estimationStart.setToNow();
       lastValues = new double[1];
       lastValues[0] = value;
     } else {
@@ -78,10 +79,14 @@ public class BloodGlucoseEstimator {
 
   /**
    * Pobiera tablicę wartości 
-   * @param minutes
-   * @return 
+   * @param minutes Czas estymacji. Mniejszy lub równy 360 minut.
+   * @return Tablica wartości co minutę
+   * @throws RuntimeException Gdy nie podano wcześniej początkowej wartości poziomu cukru.
+   * @throws IllegalArgumentException Gdy parametr jest z poza zakresu.
    */
   public double[] getEstimataion(int minutes) throws RuntimeException {
+    if (minutes > 360) throw new IllegalArgumentException("Nie można pobrać estymacji dłuższej niż 360 minut.");
+    if (minutes<=0) throw new IllegalArgumentException("Bardzo śmieszne.");
     double output[] = new double[minutes];
     Time t = new Time();
     t.setToNow();
@@ -99,6 +104,33 @@ public class BloodGlucoseEstimator {
       throw new RuntimeException("Dodaj wcześniej początkową wartość poziomu cukru.");
     }
     return output;
+  }
+
+  /**
+   * Pobiera tablicę estymacji od teraz do końca
+   * @return Tablicę estymacji co minutę
+   * @throws RuntimeException Kiedy nie podano wzceśniej początkowej wartości poziomu cukru
+   */
+  public double[] getEstimataion() throws RuntimeException {
+
+    Time t = new Time();
+    t.setToNow();
+    int diff = (int) TimeDiff.inMinutes(t, estimationStart);
+    try {
+      int n = lastValues.length - diff;
+      if (n <= 0) {
+        double output[] = new double[1];
+        output[0] = lastValues[lastValues.length - 1];
+        return output;
+      }
+      double output[] = new double[n];
+      for (int i = 0; i < n; ++i) {
+        output[i] = lastValues[diff + i];
+      }
+      return output;
+    } catch (NullPointerException ex) {
+      throw new RuntimeException("Dodaj wcześniej początkową wartość poziomu cukru.");
+    }
   }
 
   /**

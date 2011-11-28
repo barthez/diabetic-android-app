@@ -1,3 +1,4 @@
 proguard.cfg
 .settings
 .classpath
+.project
