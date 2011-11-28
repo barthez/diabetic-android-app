@@ -20,7 +20,7 @@ import sugar.control.utils.ChosenFood;
  */
 public class ChosenFoodDatabaseAdapter {
 
-    public static final String DATABASE_NAME = "chosen.db";
+    public static final String DATABASE_NAME = "food.db";
     public static final int DATABASE_VERSION = 1;
     public static final String TABLE_NAME = "chosen";
     // Glowna tabela
@@ -33,10 +33,10 @@ public class ChosenFoodDatabaseAdapter {
     // string
     public static final String FOOD_NAME = "food_name";
     public static final String NAME_OPTIONS = "TEXT NOT NULL";
-    // int
+    // double
     public static final String FOOD_IG = "food_IG";
     public static final String IG_OPTIONS = "DOUBLE";
-    // int
+    // double
     public static final String FOOD_CARBON = "food_carbo";
     public static final String CARBON_OPTIONS = "DOUBLE";
     //int
