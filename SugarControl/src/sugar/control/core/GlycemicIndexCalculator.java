@@ -1,11 +1,21 @@
 package sugar.control.core;
 
+import java.util.ArrayList;
+
+import sugar.control.utils.Food;
+
 
 /**
  * @author Marta Drabarczyk
  *
  */
 public class GlycemicIndexCalculator {
+	
+	private ArrayList<Food> foodList;
+	
+	public GlycemicIndexCalculator(){
+		foodList = new ArrayList<Food>();
+	}
 	
 	static GlycemicIndexCalculator instance = null;
 		/**
@@ -27,7 +37,15 @@ public class GlycemicIndexCalculator {
 	 * @param carbonPerGram ilość węglowodanów na gram produktu
 	 * @return indeks glikemiczny podanej ilości danego produktu
 	 */
-	public double calculateIndex(double ig,double weight, double carbonPerGram ){
-		return Math.round(((weight*carbonPerGram)/50)*ig);
+//	public double calculateIndex(){
+//		return Math.round(((weight*carbonPerGram)/50)*ig);
+//	}
+	
+	public void addFood(Food f){
+		foodList.add(f);
+	}
+	
+	public void removeFood(Food f){
+		foodList.remove(f);
 	}
 }

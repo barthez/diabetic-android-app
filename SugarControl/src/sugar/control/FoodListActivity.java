@@ -1,6 +1,9 @@
 
 package sugar.control;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -9,6 +12,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Contacts.People;
+import android.util.SparseBooleanArray;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +25,10 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import sugar.control.core.GlycemicIndexCalculator;
 import sugar.control.database.FoodDatabaseAdapter;
 import sugar.control.utils.Food;
+import sugar.control.utils.FoodArrayAdapter;
 
 /**
  *
@@ -29,21 +36,22 @@ import sugar.control.utils.Food;
  */
 public class FoodListActivity extends ListActivity {
 
-    private SimpleCursorAdapter adapter;
+//    private SimpleCursorAdapter adapter;
+    private List<Food> foodList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.foodlist);
-        final Context cx = getApplicationContext();
+//        setContentView(R.layout.foodlist);
+//        final Context cx = getApplicationContext();
         //Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, null);
         //startManagingCursor(c);
         //String[] cols = new String[]{People.NAME};
 
         
-        FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
-        da.open();
-        da.deleteAll();
+//        FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
+//        da.open();
+//        da.deleteAll();
         String[] foodNames = new String[]{"babka z polewą truskawkową",
             "bezy", "biszkopt", "bułeczki drożdżowe", "ciasto bananowe bez cukru",
             "ciasto bananowe z cukrem", "ciasto czekoladowe z polewą czekoladową",
@@ -75,10 +83,17 @@ public class FoodListActivity extends ListActivity {
             0.23, 0.12, 0.05, 0.26, 0.05, 0.05, 0.54, 0.07, 0.07, 0.07, 0.05,
             0.09};
 
+        foodList = new ArrayList<Food>();
         for(int i=0; i<foodNames.length; ++i){
             Food f = new Food(foodNames[i], foodIG[i], foodCarbo[i]);
-            da.insertFood(f);
+//            da.insertFood(f);
+            foodList.add(f);
         }
+        
+        ArrayAdapter<Food> adapter = new FoodArrayAdapter(this,foodList);
+        this.setTitle("Wprowadź wagę w gramach");
+		setListAdapter(adapter);
+
 
 
 //        Food banan = new Food("banan", 1, 2);
@@ -97,20 +112,20 @@ public class FoodListActivity extends ListActivity {
 //        da.insertFood(pomidor);
 
 
-        Cursor c = da.getAllEntries();
+//        Cursor c = da.getAllEntries();
+//
+//        String[] cols  = new String[]{FoodDatabaseAdapter.FOOD_NAME};
+//
+//        int[] names = new int[]{R.id.row_tv};
+//        adapter = new SimpleCursorAdapter(this, R.layout.list_item, c, cols, names);
+//        ListView lv = getListView();
+//        lv.setChoiceMode(lv.CHOICE_MODE_MULTIPLE);
+//        lv.setItemChecked(2, true);
+//
+//
+//        this.setListAdapter(adapter);
 
-        String[] cols  = new String[]{FoodDatabaseAdapter.FOOD_NAME};
-
-        int[] names = new int[]{R.id.row_tv};
-        adapter = new SimpleCursorAdapter(this, R.layout.list_item, c, cols, names);
-        ListView lv = getListView();
-        lv.setChoiceMode(lv.CHOICE_MODE_MULTIPLE);
-        lv.setItemChecked(2, true);
-
-
-        this.setListAdapter(adapter);
-
-        da.close();
+//        da.close();
     }
 
     @Override
@@ -120,7 +135,7 @@ public class FoodListActivity extends ListActivity {
 
 
 
-        menu.add(0, 1, 1, "Zjedz!");            // to menu tez bedzie przeniesione!
+        menu.add(0, 1, 1, "Dalej!");            // to menu tez bedzie przeniesione!
         menu.add(0, 2, 2,  "Stworz posilek!");
 
 
@@ -138,29 +153,29 @@ public class FoodListActivity extends ListActivity {
 
         switch(item.getItemId()){
             case 1:
-
-                
-                
-                ListView lv = getListView();    
-                             
-                long[] ids = lv.getCheckItemIds();
-                for(long l: ids){
-                   Food pomidor = new Food(Long.toString(l), l, l);
-                   FoodDatabaseAdapter da = new FoodDatabaseAdapter(this);
-                   da.open();
-                   da.insertFood(pomidor);
-                   da.close();
-
-                }
-
-//                if(ids.length != 0){
-//                    Intent MainMenuIntent = new Intent(FoodListActivity.this,ShowSugar.class);  // tu ma przechodzic gdzie indziej ostatecznie!
-//                    startActivity(MainMenuIntent);
-//                }
-                return true;
+                GlycemicIndexCalculator g = GlycemicIndexCalculator.getInstance();
+                boolean selected = false;
+            	for(int i=0;i<this.foodList.size();i++) {
+            		if(foodList.get(i).isSelected()==true) {
+            			g.addFood(foodList.get(i));
+            			selected = true;
+            		}
+            	}
+            		
+            	if (selected==true) {
+            		Intent MainMenuIntent = new Intent(FoodListActivity.this,SugarLevelGraph.class);
+                    startActivity(MainMenuIntent);
+                    return true;
+            	}
+            	else {
+            		return false;
+            	}
+            	
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
+
+    
 }

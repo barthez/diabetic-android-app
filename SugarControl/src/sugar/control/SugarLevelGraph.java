@@ -14,9 +14,12 @@ import com.jjoe64.graphview.GraphView.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
 import sugar.control.core.BloodGlucoseEstimator;
+import sugar.control.core.GlycemicIndexCalculator;
 
 public class SugarLevelGraph extends Activity {
-
+	
+	double ig;
+	
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -26,11 +29,14 @@ public class SugarLevelGraph extends Activity {
     double[] bloodG = {80, 90, 105, 90, 80, 80, 80, 80};
 
     final BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
-
+    final GlycemicIndexCalculator gic = GlycemicIndexCalculator.getInstance();
+    
     bge.setGTTCurve(bloodG, 50);
     bge.setGlucoseValue(80);
-
-    double output[] = bge.estimate(100, 360);
+    
+//    double ig = gic.calculateGlycemicIndex();
+    ig = 10;
+    double output[] = bge.estimate(ig, 360);
 
     GraphViewData data[] = new GraphViewData[output.length];
     for (int i = 0; i < output.length; ++i) {
@@ -73,7 +79,7 @@ public class SugarLevelGraph extends Activity {
 
   private void startYesEatActivity(Class<? extends Activity> activity, BloodGlucoseEstimator bge) {
 		Intent intent = new Intent(SugarLevelGraph.this, activity);
-		bge.saveEstimatimation(100, 360);
+		bge.saveEstimatimation(ig, 360);
                 
 		startActivity(intent);
 	}
