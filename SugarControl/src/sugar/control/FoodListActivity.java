@@ -145,6 +145,20 @@ public class FoodListActivity extends ListActivity {
         
         return null;
     }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 1) {
+      if (resultCode == 0) {
+        
+      } else {
+        Toast.makeText(getApplicationContext(), "Wybierz mniej słodkie danie.", Toast.LENGTH_SHORT).show();
+      }
+    }
+  }
+    
+    
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -162,7 +176,7 @@ public class FoodListActivity extends ListActivity {
             		
             	if (selected==true) {
             		Intent MainMenuIntent = new Intent(FoodListActivity.this,SugarLevelGraph.class);
-                    startActivity(MainMenuIntent);
+                    startActivityForResult(MainMenuIntent, 1);
                     return true;
             	}
             	else {

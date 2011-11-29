@@ -184,7 +184,22 @@ public class BloodGlucoseEstimator {
    * @param howlong Długość estymacji w minutach
    */
   public void saveEstimatimation(double ig, int howlong) throws RuntimeException, IllegalArgumentException {
-    double output[] = estimate(ig, howlong);
+    if (GTTCurve == null) {
+      throw new RuntimeException("Wczytaj najpierw dane krzywej glikemicznej.");
+    }
+    if (howlong > GTTCurve.lastValue()) {
+      throw new IllegalArgumentException("Nie można estymować poziomu cukru dłużej niż zakres krzywej glikemicznej.");
+    }
+    Time tt = new Time();
+    tt.setToNow();
+    double[] output = new double[howlong];
+    double first = GTTCurve.val(0);
+    double c = activCoff * coeff * ig / 100;
+    for (int i = 0; i < howlong; ++i) {
+      double cv = GTTCurve.val(i);
+      output[i] = getlastValue(i, tt) + (cv - first) * c;
+    }
+
 
     estimationStart.setToNow();
 

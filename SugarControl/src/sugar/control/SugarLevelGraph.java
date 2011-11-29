@@ -30,7 +30,7 @@ public class SugarLevelGraph extends Activity {
     final BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
     final GlycemicIndexCalculator gic = GlycemicIndexCalculator.getInstance();
     
-    double ig = gic.calculateIndex();
+    ig = gic.calculateIndex();
     double output[] = bge.estimate(ig, 360);
 
     GraphViewData data[] = new GraphViewData[output.length];
@@ -74,24 +74,33 @@ public class SugarLevelGraph extends Activity {
     Button YesEat = (Button) findViewById(R.id.yeseat);
         YesEat.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                startYesEatActivity(MainMenu.class,bge);
+                saveEstimation();
+                
+                 Intent result = new Intent();
+                result.putExtra("result", "OK");
+                setResult(0, result);
+                
+                finish();
             }
         });
 
     Button NoEat = (Button) findViewById(R.id.noeat);
         NoEat.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                Intent GraphIntent = new Intent(SugarLevelGraph.this,MainMenu.class);
-                startActivity(GraphIntent);
+              
+                 Intent result = new Intent();
+                result.putExtra("result", "NO");
+                setResult(1, result);
+                
+                finish();
             }
         });
 
   }
 
-  private void startYesEatActivity(Class<? extends Activity> activity, BloodGlucoseEstimator bge) {
-		Intent intent = new Intent(SugarLevelGraph.this, activity);
-		bge.saveEstimatimation(ig, 360);
-                
-		startActivity(intent);
+  private void saveEstimation() {
+		
+		BloodGlucoseEstimator.getInstance().saveEstimatimation(ig, 360);
+    
 	}
 }

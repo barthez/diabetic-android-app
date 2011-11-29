@@ -64,7 +64,7 @@ public class ShowSugar  extends Activity {
     }
     
     private void drawEstimationGraph() {
-		double output[] = estimator.getEstimataion(360);
+		double output[] = estimator.getEstimataion();
 
                 GraphViewData data[] = new GraphViewData[output.length];
                 for (int i = 0; i < output.length; ++i) {
