@@ -5,6 +5,13 @@
         android:layout_height="fill_parent" 
         android:gravity="center">
 
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent"
+			android:layout_height="300dip"
+			android:id="@+id/graph1" />
+     
+
         <TextView
             android:id="@+id/sugarLevel"
             android:layout_width="wrap_content"
@@ -16,7 +23,7 @@
         <TextView
             android:id="@+id/Pause1"
             android:layout_width="wrap_content"
-            android:layout_height="200px"
+            android:layout_height="20px"
             android:text="" />
 
         <Button
