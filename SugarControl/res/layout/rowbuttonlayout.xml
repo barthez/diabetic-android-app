@@ -15,6 +15,7 @@
 	    android:id="@+id/weight"
 	    android:layout_width="100px"
 	    android:layout_height="wrap_content"
+      android:numeric="decimal"
 	    android:layout_alignParentRight="true"
 	    android:layout_alignParentTop="true" >
 

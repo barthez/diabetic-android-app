@@ -1,6 +1,7 @@
 package sugar.control.core;
 
 import android.text.format.Time;
+import sugar.control.database.SurveyDatabaseAdapter;
 import sugar.control.utils.Spline;
 import sugar.control.utils.TimeDiff;
 
@@ -16,6 +17,9 @@ public class BloodGlucoseEstimator {
   private Spline GTTCurve = null;
   private double lastValues[];
   private Time estimationStart = new Time();
+  
+  
+    SurveyDatabaseAdapter dba;
 
   /**
    * Ustawia współczynnik wysiłku fizycznego
@@ -26,14 +30,29 @@ public class BloodGlucoseEstimator {
   }
 
   protected BloodGlucoseEstimator() {
+    dba = new SurveyDatabaseAdapter(null);
     loadData();
   }
 
   private void loadData() {
+    try {
+      estimationStart = dba.getTimeOfLastSurvey();
+      lastValues = dba.getResultOfLastSurvey();    
+    } catch(Exception ex) {
+      
+    }
+    
   }
 
   public void saveData() {
+    try {
+      dba.saveSurvey(estimationStart, lastValues);
+    } catch (Exception ex) {
+      
+    }
+    
   }
+  
   static BloodGlucoseEstimator instance = null;
 
   /**
