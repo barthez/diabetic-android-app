@@ -1,5 +1,6 @@
 package sugar.control;
 
+import sugar.control.core.BloodGlucoseEstimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,15 +20,19 @@ public OnClickListener listenerOK = new OnClickListener(){
 			
 					RadioGroup phys = (RadioGroup)findViewById(R.id.physicalactivity);
 					String physAnswer="nie wyszło";
+					double physAnswerDouble = 0;
 					switch(phys.getCheckedRadioButtonId())
 					{case R.id.low: 
-						physAnswer="niska"; 
+						physAnswer="niska";
+						physAnswerDouble=1.1;
 						break;
 					case R.id.normal: 
 						physAnswer="normalna";
+						physAnswerDouble = 1.0;
 						break;
 					case R.id.high: 
 						physAnswer="wysoka";
+						physAnswerDouble=0.9;
 						break;
 					default:break;
 					}
@@ -39,9 +44,18 @@ public OnClickListener listenerOK = new OnClickListener(){
 			        	return;
 			        	}
 			        
-					double sugarLev = Double.parseDouble(a.getText().toString());
+			        double sugarLev=0;
+			        try{
+			        	sugarLev = Double.parseDouble(a.getText().toString());
+			        } catch(Exception e){
+			        	TextView con=(TextView)findViewById(R.id.cont);
+			        	con.setText("Poziom cukru musi być liczbą");
+			        }
 		           
-			     
+			        BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
+			        bge.setActivCoff(physAnswerDouble);
+			        bge.setGlucoseValue(sugarLev);
+			        
 	                
 		            Intent InsertToShowIntent = new Intent(InsertSugar.this,ShowInsert.class);
 	                startActivity(InsertToShowIntent);
@@ -66,13 +80,6 @@ public OnClickListener listenerOK = new OnClickListener(){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertsugar);
         
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent InsertSugarIntent = new Intent(InsertSugar.this,MainMenu.class);
-                startActivity(InsertSugarIntent);
-            }
-        });
         
        Button OK = (Button)findViewById(R.id.ok) ;
        OK.setOnClickListener(listenerOK);
@@ -83,8 +90,8 @@ public OnClickListener listenerOK = new OnClickListener(){
        cancel.setOnClickListener(new View.OnClickListener() {
        public void onClick(View v) {
        // Perform action on click
-    	   EditText et = (EditText)findViewById(R.id.sugar);
-            et.setText("");
+    	   Intent SettingsIntent = new Intent(InsertSugar.this,MainMenu.class);
+           startActivity(SettingsIntent);
        }
         
     });

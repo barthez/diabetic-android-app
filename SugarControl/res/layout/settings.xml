@@ -7,21 +7,12 @@
   >
 
     <!-- android:gravity="top" -->
-
-
+
 <RelativeLayout
     android:id="@+id/LinearLayout02"
     android:layout_width="wrap_content"
     android:layout_height="480dp"
     android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/backtomainmenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Wróć z Settings" />
 
     <TextView
         android:id="@+id/label"
@@ -159,7 +150,6 @@
         android:layout_below="@+id/h2"
         android:text="4h" />
 
-
     <EditText
         android:id="@+id/h5"
         android:layout_width="10dip"
@@ -169,8 +159,6 @@
         android:layout_below="@+id/TextView04"
         android:digits="1234567890"
         android:maxLength="4" />
-
-
 
     <EditText
         android:id="@+id/h6"

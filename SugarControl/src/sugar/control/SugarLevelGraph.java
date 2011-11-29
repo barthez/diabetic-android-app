@@ -27,16 +27,10 @@ public class SugarLevelGraph extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.graph);
 
-    double[] bloodG = {80, 90, 105, 90, 80, 80, 80, 80};
-
     final BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
     final GlycemicIndexCalculator gic = GlycemicIndexCalculator.getInstance();
     
-    bge.setGTTCurve(bloodG, 50);
-    bge.setGlucoseValue(80);
-    
-//    double ig = gic.calculateGlycemicIndex();
-    ig = 10;
+    double ig = gic.calculateIndex();
     double output[] = bge.estimate(ig, 360);
 
     GraphViewData data[] = new GraphViewData[output.length];
@@ -87,7 +81,7 @@ public class SugarLevelGraph extends Activity {
     Button NoEat = (Button) findViewById(R.id.noeat);
         NoEat.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                Intent GraphIntent = new Intent(SugarLevelGraph.this,CanEat.class);
+                Intent GraphIntent = new Intent(SugarLevelGraph.this,MainMenu.class);
                 startActivity(GraphIntent);
             }
         });

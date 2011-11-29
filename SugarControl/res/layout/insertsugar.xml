@@ -34,7 +34,7 @@
     
      <Button
         android:id="@+id/ok"
-        android:layout_width="wrap_content"
+        android:layout_width="200px"
         android:layout_height="wrap_content"
         android:layout_below="@+id/physicalactivity"
         android:layout_alignParentRight="true"
@@ -42,32 +42,12 @@
         android:text="OK" />
     <Button
  		android:id="@+id/cancel"  
-        android:layout_width="wrap_content"
+        android:layout_width="200px"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/ok"
         android:layout_alignTop="@+id/ok"
         
         android:text="Cancel" />
-   <Button
-   
-       android:id="@+id/backtomainmenu"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
-       android:layout_alignParentLeft="true"
-       android:text="Wróć z InsertSugar" />
-
-
-
-   <Button
-       android:id="@+id/estimation"
-       android:layout_width="200px"
-       android:layout_height="70px"
-       android:layout_above="@+id/backtomainmenu"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentRight="true"
-       android:layout_marginBottom="28dp"
-       android:text="Estymuj" />
 
 
 

@@ -1,6 +1,7 @@
 package sugar.control;
 
 
+import sugar.control.core.BloodGlucoseEstimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +16,17 @@ import android.content.Context;
 
 public class Settings extends Activity {
 	
+	private double h0;
+	private double h05;
+	private double h1;
+	private double h2;
+	private double h3;
+	private double h4;
+	private double h5;
+	private double h6;
+	
 public OnClickListener listenerOK = new OnClickListener(){
+
 		
 		public void onClick(View v) {
 			
@@ -63,15 +74,23 @@ public OnClickListener listenerOK = new OnClickListener(){
 			        	return;
 			        	}
 		         
-			        
-			        double h0 = Double.parseDouble(b.getText().toString());
-			        double h05 = Double.parseDouble(c.getText().toString());
-			        double h1 = Double.parseDouble(d.getText().toString());
-			        double h2 = Double.parseDouble(e.getText().toString());
-			        double h3 = Double.parseDouble(f.getText().toString());
-			        double h4 = Double.parseDouble(g.getText().toString());
-			        double h5 = Double.parseDouble(h.getText().toString());
-			        double h6 = Double.parseDouble(i.getText().toString());
+			        try {
+				         h0 = Double.parseDouble(b.getText().toString());
+				         h05 = Double.parseDouble(c.getText().toString());
+				         h1 = Double.parseDouble(d.getText().toString());
+				         h2 = Double.parseDouble(e.getText().toString());
+				         h3 = Double.parseDouble(f.getText().toString());
+				         h4 = Double.parseDouble(g.getText().toString());
+				         h5 = Double.parseDouble(h.getText().toString());
+				         h6 = Double.parseDouble(i.getText().toString());
+			        } catch (Exception e1){
+			        	CharSequence text = "Wpisz tylko wartości liczbowe";
+			            Context context = getApplicationContext();
+			            int duration = Toast.LENGTH_LONG;
+			             
+			            Toast toast = Toast.makeText(context,text,duration);
+			            toast.show();
+			        }
 			        
 		            Intent SettingsToShowIntent = new Intent(Settings.this,ShowSet.class);
 	                startActivity(SettingsToShowIntent);
@@ -88,10 +107,12 @@ public OnClickListener listenerOK = new OnClickListener(){
 	                ToShow.putExtra("4",h4);
 	                ToShow.putExtra("5",h5);
 	                ToShow.putExtra("6",h6);
-	                startActivityForResult(ToShow, 1);      
+	                startActivityForResult(ToShow, 1);
+	                
+	                BloodGlucoseEstimator bge = BloodGlucoseEstimator.getInstance();
+	                double []data = {h0,h05,h1,h2,h3,h4,h5,h6};
+	                bge.setGTTCurve(data, 50);
     
-		
-			
 		}
 	};
 	
@@ -103,45 +124,18 @@ public OnClickListener listenerOK = new OnClickListener(){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         
-        Button MainMenu = (Button) findViewById(R.id.backtomainmenu);
-        MainMenu.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent SettingsIntent = new Intent(Settings.this,MainMenu.class);
-                startActivity(SettingsIntent);
-            }
-        });
-        
+
         Button OK = (Button)findViewById(R.id.ok) ;
         OK.setOnClickListener(listenerOK);
         
       //Cancel Button
         final Button cancel = (Button) findViewById(R.id.button1);
-        cancel.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-        // Perform action on click
-     	   EditText clear1 = (EditText)findViewById(R.id.name);
-     	   EditText clear2 = (EditText)findViewById(R.id.h0);
-     	   EditText clear3 = (EditText)findViewById(R.id.h05);
-     	   EditText clear4 = (EditText)findViewById(R.id.h1);
-     	   EditText clear5 = (EditText)findViewById(R.id.h2);
-     	   EditText clear6 = (EditText)findViewById(R.id.h3);
-     	   EditText clear7 = (EditText)findViewById(R.id.EditText01);
-     	   EditText clear8 = (EditText)findViewById(R.id.h5);
-     	   EditText clear9 = (EditText)findViewById(R.id.h6);            
-     	   
-     	   clear1.setText("");
-     	   clear2.setText("");
-     	   clear3.setText("");
-     	   clear4.setText("");
-     	   clear5.setText("");
-     	   clear6.setText("");
-     	   clear7.setText("");
-     	   clear8.setText("");
-     	   clear9.setText("");
-            
-        }
-         
-     });
+        cancel.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent SettingsIntent = new Intent(Settings.this,MainMenu.class);
+                startActivity(SettingsIntent);
+            }
+        });
         
     }
 

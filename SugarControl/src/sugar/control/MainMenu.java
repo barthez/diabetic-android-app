@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import sugar.control.core.BloodGlucoseEstimator;
 import sugar.control.database.FoodDatabaseAdapter;
 import sugar.control.utils.Food;
 
@@ -36,18 +37,11 @@ public class MainMenu extends Activity {
         Button CanEatButton = (Button) findViewById(R.id.caneat);
         CanEatButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                Intent MainMenuIntent = new Intent(MainMenu.this, CanEat.class);
+            	Intent MainMenuIntent = new Intent(MainMenu.this, FoodListActivity.class);
                 startActivity(MainMenuIntent);
             }
         });
         
-        Button JustAteButton = (Button) findViewById(R.id.justate);
-        JustAteButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Intent MainMenuIntent = new Intent(MainMenu.this,JustAte.class);
-                startActivity(MainMenuIntent);
-            }
-        });
         
         Button SettingsButton = (Button) findViewById(R.id.settings);
         SettingsButton.setOnClickListener(new OnClickListener() {
