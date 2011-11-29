@@ -80,7 +80,14 @@ public class ShowSugar  extends Activity {
                   data[i] = new GraphViewData(i, 130);
                 }
 
-                GraphViewSeries hyperglycemicSeries = new GraphViewSeries("Hiperglikemia", Color.rgb(200, 50, 00) ,data);
+                GraphViewSeries hyperglycemicSeries1 = new GraphViewSeries("Hiperglikemia 1", Color.rgb(200, 50, 00) ,data);
+
+                data = new GraphViewData[output.length];
+                for (int i = 0; i < output.length; ++i) {
+                  data[i] = new GraphViewData(i, 180);
+                }
+
+                GraphViewSeries hyperglycemicSeries2 = new GraphViewSeries("Hiperglikemia 2", Color.rgb(220, 20, 60) ,data);
 
                 data = new GraphViewData[output.length];
                 for (int i = 0; i < output.length; ++i) {
@@ -92,9 +99,11 @@ public class ShowSugar  extends Activity {
                 GraphView graphView = new LineGraphView(this, "Poziom cukru [mg/dl]");
 
                 graphView.setHorizontalLabels(new String[]{"0h", "1h", "2h", "3h", "4h", "5h", "6h"});
-                graphView.addSeries(exampleSeries); // data
-                graphView.addSeries(hyperglycemicSeries);
+                
+                graphView.addSeries(hyperglycemicSeries1);
+                graphView.addSeries(hyperglycemicSeries2);
                 graphView.addSeries(lowSeries);
+                graphView.addSeries(exampleSeries); // data
 
                 graphView.setViewPort(0, 360);
 
